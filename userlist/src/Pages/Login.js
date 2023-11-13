@@ -1,4 +1,4 @@
-import React,{useState,useCallback, useContext} from 'react';
+import React,{useState, useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom"
 import { LoginAndRegisterImg } from '../Components';
 import {getItemsFromLocalStorage } from '../Hooks/LocalStorage'
@@ -18,8 +18,13 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const allUser = getItemsFromLocalStorage("user");
 
+    if(!formData.email || !formData.password){
+         alert("password and email  required")
+         return;
+    }
+
+    const allUser = getItemsFromLocalStorage("user");
     const isUserPresent = allUser.some((item) => item.email === formData.email && item.password === formData.password )
 
     if(isUserPresent){

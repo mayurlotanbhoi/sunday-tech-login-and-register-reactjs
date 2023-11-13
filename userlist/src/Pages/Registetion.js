@@ -17,6 +17,12 @@ export default function Registetion() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here, you can perform actions with the collected form data
+    if(!formData.username || !formData.email || !formData.password){
+      alert("username ,email and password required ")
+      return;
+    }
+
+
     console.log('Submitted Form Data:', formData);
     const allUser = getItemsFromLocalStorage("user");
     const isUserAlreadyExist = allUser.some((item) => item.email === formData.email && item.password === formData.password )
